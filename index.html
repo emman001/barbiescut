@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barbies Cut | Home</title>
+
+  <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="path/to/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+            rel="stylesheet">
+
+  <!-- Plugins -->
+    <link rel="stylesheet" href="plugins.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sorts+Mill+Goudy&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset + Body */
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: 'Sorts Mill Goudy', serif;
+      overflow-x: hidden;
+    }
+
+    /* ====================== [ Start Preloader ] ====================== */
+    .pace {
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        z-index: 99999999999999;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 400px;
+        border: 0px;
+        height: 1px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        -webkit-transition: all 1s;
+        -o-transition: all 1s;
+        transition: all 1s;
+    }
+
+    .pace .pace-progress {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        max-width: 300px;
+        position: fixed;
+        z-index: 99999999999999;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 100%;
+        width: 100%;
+        background: #12c2e9;
+        background: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(#12c2e9),
+                color-stop(#c471ed),
+                to(#f64f59)
+        );
+        background: -webkit-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
+        background: -o-linear-gradient(left, #12c2e9, #c471ed, #f64f59);
+        background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+    }
+
+    .pace.pace-inactive {
+        width: 100vw;
+        opacity: 0;
+    }
+
+    .pace.pace-inactive .pace-progress {
+        max-width: 100vw;
+    }
+
+    #preloader {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: fixed;
+        z-index: 9999999;
+    }
+
+    #preloader:after,
+    #preloader:before {
+        content: "";
+        position: fixed;
+        left: 0;
+        height: 50%;
+        width: 100%;
+        background: #252531;
+        -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+        -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+        transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    #preloader:before {
+        top: 0;
+    }
+
+    #preloader:after {
+        bottom: 0;
+    }
+
+    #preloader.isdone {
+        visibility: hidden;
+        -webkit-transition-delay: 1.5s;
+        -o-transition-delay: 1.5s;
+        transition-delay: 1.5s;
+    }
+
+    #preloader.isdone:after,
+    #preloader.isdone:before {
+        height: 0;
+        -webkit-transition: all 0.7s cubic-bezier(1, 0, 0.55, 1);
+        -o-transition: all 0.7s cubic-bezier(1, 0, 0.55, 1);
+        transition: all 0.7s cubic-bezier(1, 0, 0.55, 1);
+        -webkit-transition-delay: 1s;
+        -o-transition-delay: 1s;
+        transition-delay: 1s;
+    }
+
+    .loading {
+        position: fixed;
+        left: 50%;
+        top: calc(50% - 40px);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        font-weight: 300;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        z-index: 9999999999;
+    }
+
+    .loading.isdone {
+        top: 50%;
+        opacity: 0;
+        -webkit-transition: all 0.8s;
+        -o-transition: all 0.8s;
+        transition: all 0.8s;
+        -webkit-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .loading span {
+        -webkit-animation: loading 1.4s infinite alternate;
+        animation: loading 1.4s infinite alternate;
+    }
+
+    .loading span:nth-child(1) {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+    }
+
+    .loading span:nth-child(2) {
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+
+    .loading span:nth-child(3) {
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+
+    .loading span:nth-child(4) {
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+
+    .loading span:nth-child(5) {
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+
+    .loading span:nth-child(6) {
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+
+    .loading span:nth-child(7) {
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+
+    @-webkit-keyframes loading {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes loading {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* ====================== [ End Preloader ] ====================== */
+
+    /* ====================== [ Start Cursor Style ] ====================== */
+.mouse-cursor {
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    visibility: hidden;
+}
+
+.cursor-inner {
+    width: 6px;
+    height: 6px;
+    z-index: 10000001;
+    background-color: #12c2e9;
+    -webkit-transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+    margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+    margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+    margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.cursor-inner.cursor-hover {
+    margin-left: -35px;
+    margin-top: -35px;
+    width: 70px;
+    height: 70px;
+    background-color: #12c2e9;
+    opacity: 0.3;
+}
+
+.cursor-outer {
+    margin-left: -12px;
+    margin-top: -12px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #12c2e9;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 10000000;
+    opacity: 0.5;
+    -webkit-transition: all 0.08s ease-out;
+    -o-transition: all 0.08s ease-out;
+    transition: all 0.08s ease-out;
+}
+
+.cursor-outer.cursor-hover {
+    opacity: 0;
+}
+
+/* ====================== [ End Cursor Style ] ====================== */
+
+    /* Scroll Progress */
+    .progress-wrap {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      height: 50px;
+      width: 50px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .progress-circle path {
+      stroke: #c49a6c;
+      stroke-width: 4;
+      fill: none;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      transition: stroke-dashoffset 0.3s;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #222;
+    }
+    .navbar .nav-link {
+      color: #eee !important;
+    }
+    .navbar .nav-link:hover {
+      color: #c49a6c !important;
+    }
+    .navbar-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Hero */
+    .hero {
+      background: url('ChatGPT Image Sep 20, 2025, 11_31_48 AM.png') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-family: 'Great Vibes', cursive;
+      animation: fadeInDown 1.5s;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* About Us */
+    #story {
+      background: #474141;
+    }
+
+    /* Project Cards */
+    .card {
+      border: none;
+      background: #1b1b1b;
+      color: #eee;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .card img {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    /* Gallery */
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 10px;
+    }
+
+    .collage-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .collage-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Span modifiers */
+    .wide {
+      grid-column: span 2;
+    }
+
+    .tall {
+      grid-row: span 2;
+    }
+
+    .big {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    /* Contact */
+    #contact h5 {
+      color: #c49a6c;
+    }
+    
+    /* Footer */
+    .footer {
+  background: linear-gradient(135deg, #111, #222, #000);
+  color: #eee;
+  padding: 60px 0; /* top & bottom padding */
+    }
+
+    .footer a {
+      color: #eee;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #c49a6c; /* gold hover effect */
+    }
+
+    .footer-logo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      margin-right: 15px;
+    }
+
+    .footer .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer .footer-social a {
+      font-size: 1.5rem;
+      margin-right: 15px;
+    }
+
+    .footer .footer-social a:last-child {
+      margin-right: 0;
+    }
+
+    @media (max-width: 768px) {
+    .wide, .tall, .big {
+      grid-column: span 1 !important;
+      grid-row: span 1 !important;
+    }
+
+    .footer .footer-row {
+    flex-direction: column;
+    text-align: center;
+    }
+
+    .footer-logo {
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+
+    .footer-social {
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+    }
+   </style>
+</head>
+<body>
+
+<!-- ==================== Start Loading ==================== -->
+<div class="loading">
+    <span>L</span>
+    <span>O</span>
+    <span>A</span>
+    <span>D</span>
+    <span>I</span>
+    <span>N</span>
+    <span>G</span>
+</div>
+
+<div id="preloader">
+</div>
+
+<!-- ==================== End Loading ==================== -->
+
+
+<!-- ==================== Start progress-scroll-button ==================== -->
+
+<div class="progress-wrap cursor-pointer">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+    </svg>
+</div>
+
+<!-- ==================== End progress-scroll-button ==================== -->
+
+
+<!-- ==================== Start cursor ==================== -->
+
+<div class="mouse-cursor cursor-outer"></div>
+<div class="mouse-cursor cursor-inner"></div>
+
+<!-- ==================== End cursor ==================== -->
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.jpg" alt="Logo" class="me-2">
+        <span>Barbies Cut</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#About">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div style="height: 70px;"></div> <!-- Spacer for fixed navbar -->
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>✨ Barbies Cut – Redefining Nigerian Beauty ✨</h1>
+      <p class="lead">For over 5 years, we’ve been your trusted salon for premium cuts, braids, and beauty care.</p>
+      <a href="#" class="btn btn-outline-light btn-lg">Book Your Appointment</a>
+    </div>
+  </section>
+
+  <!-- About US -->
+  <section id="story" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">About Us</h2>
+      <p class="text-center">At Barbies Cut, beauty isn’t just what we do — it’s who we are. For over five years, our Nigerian salon has been a trusted destination for men and women seeking stylish, healthy, and professional hair care.</p>
+      <p class="text-center">Our team of passionate stylists and barbers combine creativity with expertise, offering everything from timeless haircuts to the latest trends in braids, weaves, and treatments. Each visit is more than a salon experience — it’s a chance to relax, refresh, and embrace your best look.</p>
+      <p class="text-center">With a loyal client base and a welcoming atmosphere, Barbies Cut continues to grow as a community hub where elegance meets excellence.</p>
+       <p class="text-center">Come experience why our clients call us the home of style and elegance in Nigeria.</p>
+    </div>
+    
+
+  <!-- Services -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Our Services</h2>
+      <div class="row g-4">
+        <!-- Cards -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Classic Cuts">
+            <div class="card-body">
+              <h5 class="card-title">Classic HairCuts</h5>
+              <p class="card-text">Precision cuts for men and women that never go out of style.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=2" class="card-img-top" alt="Beard Styling">
+            <div class="card-body">
+              <h5 class="card-title">Beard Grooming & Shaves</h5>
+              <p class="card-text">Sharp beard trims and clean shaves for a polished look.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="Hot Shaves">
+            <div class="card-body">
+              <h5 class="card-title">Relaxing & Styling</h5>
+              <p class="card-text">Smooth finishes, elegant updos, and day-to-day glam looks.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=4" class="card-img-top" alt="Kids Haircuts">
+            <div class="card-body">
+              <h5 class="card-title">Kids Haircuts</h5>
+              <p class="card-text">Fresh and stylish cuts for the young gentlemen.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=5" class="card-img-top" alt="Color & Highlights">
+            <div class="card-body">
+              <h5 class="card-title">Hair Coloring & Treatment</h5>
+              <p class="card-text">From bold hues to nourishing treatments, we keep your hair healthy and radiant.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://picsum.photos/400/250?random=6" class="card-img-top" alt="Facial Treatments">
+            <div class="card-body">
+              <h5 class="card-title">Special Occasion Packages</h5>
+              <p class="card-text">Bridal, birthday, and event-ready styling to make your day unforgettable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-5 bg-dark">
+    <div class="container"></div>
+      <h2 class="text-center mb-4">Gallery</h2>
+      <div class="collage">        
+        <div class="collage-item big">
+          <img src="WhatsApp Image 2025-09-12 at 21.11.07_6707ce8e.jpg" alt="Collage Image 1">
+        </div>
+        <div class="collage-item tall">
+          <img src="FB_IMG_1758357623299.jpg" alt="Collage Image 3">
+        </div>
+        <div class="collage-item tall">
+          <img src="WhatsApp Image 2025-09-12 at 21.11.07_6707ce8e.jpg" alt="Collage Image 3">
+        </div>
+        <div class="collage-item wide">
+          <img src="Screenshot 2025-09-20 095201.png" alt="Collage Image 4">
+        </div>
+        <div class="collage-item">
+          <img src="Screenshot 2025-09-20 095201.png" alt="Collage Image 5">
+        </div>
+        <div class="collage-item wide">
+          <img src="WhatsApp Image 2025-09-12 at 21.11.07_d60d8637.jpg" alt="Collage Image 6">
+        </div>
+        <div class="collage-item tall">
+          <img src="FB_IMG_1758357623299.jpg" alt="Collage Image 7">
+        </div>
+        <div class="collage-item big">
+          <img src="Screenshot 2025-09-20 095640.png" alt="Collage Image 8">
+        </div>
+        <div class="collage-item tall">
+          <img src="Screenshot 2025-09-20 095830.png" alt="Collage Image 3">
+        </div>
+        <div class="collage-item wide">
+          <img src="Screenshot 2025-09-20 095830.png" alt="Collage Image 6">
+        </div>
+        <div class="collage-item wide">
+          <img src="Screenshot 2025-09-20 095944.png" alt="Collage Image 6">
+        </div>
+        <div class="collage-item wide">
+          <img src="Screenshot 2025-09-20 100043.png" alt="Collage Image 6">
+        </div>
+      </div>
+    <div>
+  </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-5 bg-dark text-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <div class="row">
+          <!-- Left -->
+          <div class="col-md-6">
+            <h5>Working Hours</h5>
+            <p>Mon - Fri: 9am - 8pm</p>
+            <p>Sat: 9am - 6pm</p>
+            <p>Sun: Closed</p>
+            <h5 class="mt-4">Follow Us</h5>
+            <p>📧 Email: <a href="mailto:barbiescut@gmail.com" class="text-light">abelbarbershop@gmail.com</a></p>
+            <p>📱 Instagram: <a href="#" class="text-light">@barbiescut1</a></p>
+            <p>👍 Facebook: <a href="#" class="text-light">https://web.facebook.com/people/Barbies-Cut/</a></p>
+          </div>
+          <!-- Right -->
+          <div class="col-md-6">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." 
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ==================== Start Footer ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-row">
+
+        <!-- Logo -->
+        <div class="footer-logo d-flex align-items-center">
+          <img src="logo.jpg" alt="Barbies Cut Logo">
+          <h4 class="mb-0 fw-bold">Barbies Cut</h4>
+        </div>
+
+        <!-- Social Links -->
+        <div class="footer-social d-flex align-items-center">
+          <a href="https://web.facebook.com/people/Barbies-Cut"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/barbiescut1"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.tiktok.com/@barbiescut3"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copy">
+          <p class="mb-0 small">&copy; 2025 Barbies Cut. All Rights Reserved.</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+<!-- ==================== End Footer ==================== -->
+
+
+  <!-- Scroll Progress -->
+  <div class="progress-wrap">
+    <svg class="progress-circle" width="50" height="50">
+      <path d="M25,5 a20,20 0 1,1 0,40 a20,20 0 1,1 0,-40"/>
+    </svg>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Preloader
+    document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+      document.getElementById("preloader").classList.add("isdone");
+      document.querySelector(".loading").classList.add("isdone");
+    }, 500); // delay in ms for smooth fade
+    });
+
+    // Scroll Progress
+    const progressPath = document.querySelector('.progress-circle path');
+    const pathLength = progressPath.getTotalLength();
+    progressPath.style.strokeDasharray = pathLength;
+    progressPath.style.strokeDashoffset = pathLength;
+
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = pathLength - (scroll * pathLength / height);
+      progressPath.style.strokeDashoffset = progress;
+    });
+
+    // Scroll to top
+    document.querySelector('.progress-wrap').addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Custom Cursor
+      const cursorInner = document.querySelector(".cursor-inner");
+      const cursorOuter = document.querySelector(".cursor-outer");
+      let mouseX = 0, mouseY = 0;
+
+      // Track mouse movement
+      document.addEventListener("mousemove", e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cursorInner.style.left = mouseX + "px";
+        cursorInner.style.top = mouseY + "px";
+        cursorOuter.style.left = mouseX + "px";
+        cursorOuter.style.top = mouseY + "px";
+
+        cursorInner.style.visibility = "visible";
+        cursorOuter.style.visibility = "visible";
+      });
+
+      // Add hover effect for links & buttons
+      document.querySelectorAll("a, button, .card").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+          cursorInner.classList.add("cursor-hover");
+          cursorOuter.classList.add("cursor-hover");
+        });
+        el.addEventListener("mouseleave", () => {
+          cursorInner.classList.remove("cursor-hover");
+          cursorOuter.classList.remove("cursor-hover");
+        });
+      });
+  </script>
+</body>
+</html>
